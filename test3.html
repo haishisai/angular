@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="/lib/angular.min.js"></script>
+<script src="/lib/ng-file-upload.min.js"></script>
+<script src="/lib/ng-file-upload-shim.min.js"></script>
+<script>
+var app = angular.module('myApp', ['ngFileUpload']);
+
+app.controller('FileController', ['$scope', 'Upload' , '$timeout','$http','$log', function($scope,Upload,$timeout,$http,$log) {
+    $scope.uploadImg = '';
+    //选择文件
+    $scope.chose_file = function(){
+        $scope.upload_ok = false;
+        $scope.progress_bar = 0;
+    }
+    //提交，此处只分快递公司，不分中国、日本
+    $scope.submit = function (file_name,file_type) {
+        $scope.upload($scope.upload_file,file_name,file_type);
+    };
+    $scope.upload = function (file,file_name,file_type) {
+        Upload.upload({
+            url: 'test3.php',
+            //data: {'file_name': file_name,'file_type':file_type},
+            file: file //上传的文件
+        }).progress(function (evt) {
+            //进度条
+            $scope.progress_bar = parseInt(100.0 * evt.loaded / evt.total);
+        }).success(function (data, status, headers, config) {
+        	console.log(data)
+            if(data == 'ok'){
+                $timeout(function(){
+                    $scope.upload_ok = true;
+                    $scope.upload_file = '';
+                    //执行判断保存数据
+                   
+                    $timeout(function(){$scope.import_ems(file_name)},1000);    
+                },1000);
+            }
+        }).error(function (data, status, headers, config) {
+            //上传失败
+            console.log('上传错误信息: ' + status);
+        });
+    };
+
+    //导入快递单
+    $scope.import_ems = function(file_name){
+        $http.get('/test3.php', {params:{import_ems:file_name}
+        }).success(function(data) {
+            $scope.ems_response = data;
+            if($scope.ems_response.status=='ok'){
+                $timeout(function(){$scope.shadow('close');},1000);
+            }
+        }).error(function(data) {
+            alert("系统错误，请联系管理员。");
+            $log.info(file_name+" 快递单导入失败");
+        });
+    }
+}]);
+	
+</script>
+</head>
+
+<body ng-app="myApp" >
+<form name="fileForm" ng-controller="FileController">
+							
+							<div class="row mt10">
+								<button ng-click="chose_file()" class="btn btn-default" ngf-select="" ngf-pattern="'.jpg'" name="file" ng-model="upload_file" ngf-multiple="ture" required="1">选择文件</button> 
+								<i ng-show="fileForm.file.$error.required" class="fa fa-fw fa-star red"></i>
+								<span class="green">{{upload_file.name}}</span>
+							</div>
+							<div class="row mt10">
+								<button class="btn btn-primary btn-sm" ng-disabled="!fileForm.$valid" ng-click="submit('zuochuan','jpg')"><i class="fa fa-upload fa-fw"></i> 导 入</button>
+							</div>
+							<div class="row mt10">
+								<div class="col-lg-11">
+									<div class="progress" ng-show="progress_bar >=0">
+										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progress_bar}}" aria-valuemin="0" aria-valuemax="100" style="width:{{progress_bar}}%">
+										{{progress_bar}}%
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-1 green fa fa-fw fa-check" ng-show="upload_ok"></div>
+							</div>
+							<div ng-show="ems_response" class="well">
+								<i class="fa fa-fw fa-exclamation-circle red"></i>已存在：<span class="red">{{ems_response.has_num}}</span> 条 <br>
+								<i class="fa fa-fw fa-check-circle green"></i>已导入：<span class="green">{{ems_response.insert_num}}</span> 条 
+							</div>
+						</form>
+
+
+</body>
+</html>

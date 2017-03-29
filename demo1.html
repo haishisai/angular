@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="customersCtrl as ctrl">
+<head>
+<meta charset="utf-8">
+<script src="/js/angular.min.js"></script>
+<script src="/js/js.js"></script>
+</head>
+<body>
+
+<div > 
+
+
+
+<ul>	
+  <li ng-repeat="x in ctrl.names">
+    <input value="{{x.s_name}}" /> | <input value="{{x.s_city}}" />
+    <button ng-click="ctrl.clickme(x.s_name,x.s_city)">修改</button>
+  </li>
+</ul>
+
+</div>
+<hr />
+<form ng-submit="ctrl.clickcg()">
+	<input ng-model="ctrl.cg.cg_name">
+	<input ng-model="ctrl.cg.cg_city">
+	<input type="submit" value="提交">
+</form>
+
+	<hr>
+<input type="text" ng-model="ctrl.input_name" />
+
+<input type="button" value="click" ng-click="ctrl.pd1()" />
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($http,$log) {
+  var self = this; // 解决java的冲突
+  $http.get("/php/demo1.php").success(function (data) {
+  	self.names = data;
+  });  
+  
+  self.pd1 = function(){
+  	$log.info(self.names)
+  	alert(self.names)
+  }
+  
+  self.clickme = function(e,f){
+  	// 实际再次向服务器请求数据
+  	self.cg={}; 	
+  	self.cg.cg_name = e;
+  	self.cg.cg_city = f;
+  }
+  
+  self.clickcg = function(){
+  	self.cg.method='change';
+  	$log.info(self.cg);
+  }
+  
+});
+
+
+
+</script>
+
+</body>
+</html>

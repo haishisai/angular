@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+<!-- <script src="lib/angular.min.js"></script> -->
+<script type="text/javascript">
+
+// var app=angular.module('myApp',[]);
+// app.controller('myCtrl', ['$scope','$http', function ($scope,$http) {
+// 	var post_data="aaa=1";
+// 	$scope.bbb = function(){
+		
+
+
+		
+// 		$http.post('json1.php', post_data).success(function(data) {               
+            
+//             $scope.aaa=data; //%
+//             console.log(data);
+            	
+//         }).error(function(data) {  
+//             alert("系统错误，请联系管理员1。")   // %
+//         });
+
+
+
+
+
+
+
+// 	}
+			
+
+
+
+
+
+
+// }]);
+
+  
+$.ajax({
+    type:'POST',
+    url:'json1.php',
+    // async:false,	 /*默认true 所有请求均为异步请求。同步请设为 false */	
+    dataType:'json', /*json格式的字符串*/
+    data:'aaa=1&bbb=1&ccc=1',
+    success:function(data){
+        console.log(data);
+        console.log(typeof data);
+        console.log(data[0].b);
+    },
+    error:function(){
+    	alert("error");
+    }
+});   
+// $.ajax({
+//             type:'POST',
+//             url:'json1.php',
+//             async:true,
+//             // dataType:'text',
+//             data:'ccc=1',
+//             success:function(data){
+//                 console.log(data);
+//             }
+//         });   		
+	
+// $.ajax({
+//             type:'POST',
+//             url:'json1.php',
+//             async:true,
+//             // dataType:'text',
+//             data:'aaa=1',
+//             success:function(data){
+//                 console.log(data);
+//             }
+//         }); 
+// setTimeout(function(){
+// 	$.ajax({
+//             type:'POST',
+//             url:'json1.php',
+//             async:false,
+//             // dataType:'text',
+//             data:'111',
+//             success:function(data){
+//                 console.log(data);
+//             }
+//         });
+
+
+// },2000)
+
+</script>
+</head>
+<body>
+	<input ng-model="aaa" ng-change="bbb()" >
+	<div ng-bind="aaa" ></div>
+
+	<button ng-click="bbb()" >go</button>
+</body>
+</html>

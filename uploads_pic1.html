@@ -1,0 +1,40 @@
+
+<div class="container" >
+		
+		<div class="row" >
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div id="upload_page" ng-app="myApp" ng-controller="uploads">
+					
+					<div ng-class="{'title1':true}" >图片上传</div>
+
+				    
+				    <div class="clearfix col-md-offset-5 m20" >
+				    	<!-- 真file隐藏  -->
+					    <input id="upload_input" class="hidden" type="file"  onchange="angular.element(this).scope().up_number()" name="images" file-model="myFile" multiple="true">
+					    <div id="r_click" class="hidden" ng-click="" ></div>  
+					    <!-- 假file  绑定到真file上  -->
+					    <input class="btn btn-default pull-left" type="button" value="选择本地图片" ng-click="up_bind()" >
+					    <span class="pull-left up_show_txt" ng-class="{'red':input_show_txt==true,'green':input_show_txt==false}" ng-bind="up_show_txt"></span>   	
+				    </div>
+				    <div class="m20" ></div>
+				    <button class="btn btn-primary col-md-offset-5" ng-click="save()" >上传</button>
+				    
+					
+					
+				    
+				    <!-- 自己等非自己   点击 true 和false 的互换 -->
+
+				    <div class="btn btn-danger" ng-click="input_show_txt=!input_show_txt">xxxxxx</div>
+				</div>				
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+</div>
+
+
+
+
+
+
+

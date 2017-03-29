@@ -1,0 +1,43 @@
+<div id="login_page" class="container" ng-app="myApp" ng-controller="loginCtrl" >
+	<div class="row">
+		<div class="col-md-4"></div>
+		<!--login-->
+		<div id="login_box"  class="col-md-4">			
+			<form name="loginForm" class="form-horizontal" role="form">
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">I D</label>
+			    <div class="col-sm-10">
+			      <input ng-model="user_id" type="text" class="form-control" id="login_user_id" placeholder="User ID">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+			    <div class="col-sm-10">
+			      <input ng-model="user_pwd" type="password" class="form-control" id="login_user_pwd" placeholder="Password">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <div class="checkbox">
+			        <label>
+			          <input type="checkbox"> Remember me
+			        </label>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+				    <div class="col-sm-6 txt_c">
+				      <button ng-click="login()" type="submit" class="btn btn-success">登 录</button>
+				    </div>
+				    <div class="col-sm-6 txt_c">
+				      <button ng-click="link_new_user()" type="submit" class="btn btn-primary">注 册</button>
+				    </div>
+			  </div>
+			</form>						
+		</div>
+		<!--/login-->
+		<div class="col-md-4"></div>
+		<input class="" type="text" name="s_date" ng-flat-datepicker datepicker-config="datepickerConfig" ng-model="s_date">{{s_date}}
+	</div>
+
+</div>

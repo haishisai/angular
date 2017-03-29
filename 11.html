@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11-validation</title>
+	<script src="lib/angular.min.js"></script>	
+</head>
+<body ng-app="myApp">
+	<div ng-controller="MainCtrl as ctrl">
+
+		<form ng-submit="ctrl.submit()" name="myForm">	
+			<input type = "text" ng-model="ctrl.user.username" required ng-minlength="4" />
+			<input type = "password" ng-model="ctrl.user.password" required />
+			<input type="submit" value="提 交" ng-disabled="myForm.$invalid">
+		</form>
+		
+	</div>
+</body>
+</html>
+
+<script>
+	angular.module('myApp',[])
+	.controller('MainCtrl',[function(){
+		var self = this;	//设置一个代理变量
+
+		self.submit = function(){
+			console.log('用户点击了提交：',self.user);	//模拟提交数据到服务器
+		};
+	}]);
+</script>

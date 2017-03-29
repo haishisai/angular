@@ -1,0 +1,12 @@
+
+
+
+
+
+
+<div class="container" ng-app="myApp" ng-controller="pic_show" >
+	<div ng-bind="pic_0" ></div>
+	<div style="display:inline-block;margin:10px;" ng-repeat="aaa in pic_data" >	
+		<img src="uploads_pd/{{aaa.pic_name}}" width="300" >
+	</div>
+</div>

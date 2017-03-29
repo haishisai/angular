@@ -1,0 +1,22 @@
+<!doctype html>
+<html ng-app="myApp" ng-controller="test" >
+<head>
+<script src="lib/angular.min.js"></script>
+</head>
+<body>
+
+
+<div ng-include="'part3.html'" >
+  
+</div>
+<input type="text" ng-model="aaa" >
+{{aaa}}
+<script type="text/javascript">
+var app = angular.module('myApp',[])
+app.controller('test',function($scope){
+	$scope.aaa = "abd"
+})
+
+</script>
+</body>
+</html>

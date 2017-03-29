@@ -1,0 +1,29 @@
+<div id="show_page" ng-app="myApp" ng-controller="showCtrl">
+	<div class="container" >
+		<!--head-->
+		<div class="row" >
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="m10" >欢迎{{user_id}}</div>
+					<div class="m20">
+					    <span style="width:100px" ui-sref="show.Page1"><a href="">Page-1</a></span>
+					    <span style="width:100px" ui-sref="show.Page2"><a href="">Page-2</a></span>
+					    <span style="width:100px" ui-sref="show.Page3"><a href="">Page-3</a></span>
+					    <span style="width:100px" ng-click="logout()" ><a href="">退出</a></span>
+					</div>	
+				</div>
+			<div class="col-md-1"></div>
+		</div>
+		<!--/head-->
+		<!--main-->
+		<div class="row" >
+			<div class="col-md-12" ui-view="main">aaa</div>
+			<hr>
+			<div ui-view="foot">bbb</div>	
+		</div>
+		<!--/main-->
+		
+	</div>
+
+
+</div>

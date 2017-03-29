@@ -1,0 +1,50 @@
+<div ng-app="myApp" ng-controller="newuserCtrl" >
+	<div style="height: 250px;" ></div>
+	<form name="newuserForm" class="form-horizontal" role="form">
+		<div class="form-group">
+			<label for="input1" class="col-sm-5 control-label">ID</label>
+			<div class="col-sm-3">
+				<input ng-model="new_user_id" type="text" class="form-control" id="input1" placeholder="id" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input2" class="col-sm-5 control-label">密码</label>
+			<div class="col-sm-3" >
+				<input ng-model="user_pwd" type="password" class="form-control" id="input2" placeholder="password" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input3" class="col-sm-5 control-label">重复密码</label>
+			<div class="col-sm-3">
+				<input ng-model="re_user_pwd" type="password" class="form-control"  id="input3" placeholder="repeat password" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input4" class="col-sm-5 control-label">Email</label>
+			<div class="col-sm-3">
+				<input ng-model="user_mail" type="text" class="form-control" id="input4" placeholder="Email" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input5" class="col-sm-5 control-label">手机</label>
+			<div class="col-sm-3" required>
+				<input ng-model="user_phone" type="text" ng-minlength="8" ng-maxlength="11" maxlength=11 id="input5" class="form-control" placeholder="phone1" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-2">
+				<button ng-click="new_user()" type="submit" class="btn btn-primary" ng-disabled="newuserForm.$invalid" >注册</button>
+			</div>
+		</div>
+
+
+
+	</form>
+</div>
+	
+<input type="text" ng-model="someProperty"><br/>
+<input type="text"
+readonly="true"
+value="Some text here"/>
+	
+

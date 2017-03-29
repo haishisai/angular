@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Simple app</title>
+<script src="lib/angular.min.js"></script>
+<script>
+
+</script>
+</head>
+<body>
+<div  ng-controller="myCtrl">
+我是myctrl
+名:  <input type="text" ng-model="firstName"><br>zzz
+姓:  <input type="text" ng-model="lastName"><br>
+<br>
+姓名: {{firstName + " " + lastName}}<br />
+{{clock | date:'hh:mm:ss.sss'}}
+</div>
+
+
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$timeout,$log) {
+    $scope.firstName = "John";
+    
+    var updateClock = function() {
+		$scope.clock = new Date();
+		$timeout(function() {
+			updateClock();
+		}, 100);
+	};
+	updateClock(); 
+});
+
+</script>
+</body>
+</html>
